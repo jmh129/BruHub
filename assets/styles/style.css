@@ -15,11 +15,9 @@ footer{
 .buttonsRow{
     display: flex;
     justify-content: center;
-    /* padding-top: 40px; */
 }
 
 #joke{
-    /* padding-top: 70px; */
     color:white;
     display: flex;
     justify-content: center;
