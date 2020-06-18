@@ -5,6 +5,7 @@ $(document).ready(function () {
   var breweryList;
 
   searchCity();
+  renderJoke();
 
   function searchCity() {
     $("#search-btn").on("click", function (event) {
@@ -26,24 +27,29 @@ $(document).ready(function () {
       for (var i = 0; i < response.length; i++) {
         console.log(response);
         breweryList = response[i].name;
+        $("#search-results").removeClass("hide");
+        $("#search-results").append(
+          $("<li>" + breweryList + "</li>")
+        );
       }
     });
   }
 
-  //On click function for #button2
-  $("#button2").on("click", function () {
-    $.ajax({
-      url: "https://official-joke-api.appspot.com/random_joke",
-      method: "get",
-    }).then(function (response) {
-      $("#joke").empty();
-      var jokeResponse = document.createElement("div");
-      $(jokeResponse).html(
-        response.setup + "<br><br><br><br>" + response.punchline
-      );
-      $(jokeResponse).attr("color", "white");
-      $("#joke").append(jokeResponse);
+  //On click function for #button2 NEED TO REWORK/CLEANUP
+  function renderJoke() {
+    $("#button2").on("click", function () {
+      $.ajax({
+        url: "https://official-joke-api.appspot.com/random_joke",
+        method: "get",
+      }).then(function (response) {
+        $("#joke").empty();
+        var jokeResponse = document.createElement("div");
+        $(jokeResponse).html(
+          response.setup + "<br><br><br><br>" + response.punchline
+        );
+        $(jokeResponse).attr("color", "white");
+        $("#joke").append(jokeResponse);
+      });
     });
-  });
-  function renderJoke() {}
+  }
 });
