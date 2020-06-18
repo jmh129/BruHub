@@ -22,10 +22,11 @@ $(document).ready(function () {
       url: OpenBrewAPIURL,
       method: "GET",
     }).then(function (response) {
-        for (var i = 0; i < response.length; i++) {
-            console.log(response[i].name);
-        }
-    //   Need to create function that converts citys with spaces to have _ 
+      for (var i = 0; i < response.length; i++) {
+          console.log(response);
+        var brewerRespone = response[i].name;
+        // console.log(response[i].name);
+      }
     });
   }
 });
