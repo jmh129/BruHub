@@ -1,12 +1,12 @@
 $(document).ready(function () {
-  console.log("Document is Ready");
-
   var cityInput;
   var breweryList;
+  var breweryWebsites;
 
   searchCity();
   renderJoke();
   renderMeme();
+  // pageCounter();
 
   function searchCity() {
     $("#search-btn").on("click", function (event) {
@@ -28,9 +28,10 @@ $(document).ready(function () {
       for (var i = 0; i < response.length; i++) {
         console.log(response);
         breweryList = response[i].name;
+        breweryWebsites = response[i].website_url;
         $("#search-results").removeClass("hide");
         $("#search-results").append(
-          $("<li>" + breweryList + "</li>")
+          $("<li>" + breweryList + " - Check These Losers Out: " + breweryWebsites + "</li>")
         );
       }
     });
@@ -68,4 +69,15 @@ $(document).ready(function () {
       });
     });
   }
+
+  //Counter API call
+  // function pageCounter() {
+  //   $.ajax({
+  //     url:
+  //       "https://api.countapi.xyz/hit/jmh129.github.io/BruHub/visits",
+  //     method: "get",
+  //   }).then(function (response) {
+  //     $("#visits").text(response.value + " people like to party.");
+  //   });
+  // }
 });
