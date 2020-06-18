@@ -17,6 +17,6 @@ $(document).ready(function () {
 function searchInput() {
 $("#search-btn").on("click", function () {
     event.preventDefault();
-    var searchCity = $("#search-text").val();
+    var cityInput = $("#search-text").val();
     console.log(searchCity);
 })};
