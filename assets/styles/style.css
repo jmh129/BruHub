@@ -1,3 +1,5 @@
-h1{
+header {
     background-color: blue;
+    color: white;
+    padding: 15px;
 }
