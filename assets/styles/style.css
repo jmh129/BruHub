@@ -1,5 +1,6 @@
-body{
+footer{
     background-color: black;
+    padding-top: 40px;
 }
 
 #button1{
@@ -12,26 +13,16 @@ body{
     justify-content: center;
 }
 
-.container{
+.buttonsRow{
     display: flex;
     justify-content: center;
-}
-
-.container3{
-    display: flex;
-    justify-content: center;
-}
-
-footer{
-    padding-top: 40px;           
-    display: flex;
-    justify-content: center;
+    padding-top: 40px;
 }
 
 #joke{
+    padding-top: 70px;
     color:white;
-}
-
-h1{
-    background-color: blue;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
