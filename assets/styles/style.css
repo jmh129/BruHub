@@ -1,3 +1,30 @@
+footer{
+    background-color: black;
+    padding-top: 40px;
+}
+
+#button1{
+    display: flex;
+    justify-content: center;
+}
+
+#button2{
+    display: flex;
+    justify-content: center;
+}
+
+.buttonsRow{
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+#joke{
+    padding-top: 70px;
+    color:white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 header {
     background-color: blue;
     color: white;

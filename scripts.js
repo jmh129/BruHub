@@ -2,6 +2,7 @@ $(document).ready(function () {
   console.log("Document is Ready");
 
   var cityInput;
+  var breweryList;
 
   searchCity();
 
@@ -23,9 +24,8 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (response) {
       for (var i = 0; i < response.length; i++) {
-          console.log(response);
-        var brewerRespone = response[i].name;
-        // console.log(response[i].name);
+        console.log(response);
+        breweryList = response[i].name;
       }
     });
   }
