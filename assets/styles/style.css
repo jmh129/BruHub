@@ -2,13 +2,23 @@ header {
     background-color: blue;
     color: white;
     padding: 15px;
-    position: fixed;
+    /* position: fixed;
     top: 0;
-    width: 100%
+    width: 100% */
 }
 
 input {
     border-radius: 5px;
+}
+
+.main-box {
+    margin: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: lightgray;
 }
 
 #search-btn {
