@@ -31,6 +31,20 @@ $(document).ready(function () {
   }
 
   //On click function for #button2
+  $("#button1").on("click", function () {
+    $.ajax({
+      url: "https://meme-api.herokuapp.com/gimme",
+      method: "get",
+    }).then(function (response) {
+      $("#joke").empty();
+      var memeResponse = document.createElement("img");
+      $(memeResponse).attr("src",response.url);
+      $(memeResponse).attr("color", "white");
+      $("#joke").append(memeResponse);
+    });
+  });
+
+  //On click function for #button2
   $("#button2").on("click", function () {
     $.ajax({
       url: "https://official-joke-api.appspot.com/random_joke",
@@ -38,12 +52,9 @@ $(document).ready(function () {
     }).then(function (response) {
       $("#joke").empty();
       var jokeResponse = document.createElement("div");
-      $(jokeResponse).html(
-        response.setup + "<br><br><br><br>" + response.punchline
-      );
+      $(jokeResponse).html(response.setup + "<br><br><br><br>" + response.punchline);
       $(jokeResponse).attr("color", "white");
       $("#joke").append(jokeResponse);
     });
   });
-  function renderJoke() {}
 });
