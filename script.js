@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  console.log("Document is Ready");
 
   var cityInput;
   var breweryList;
@@ -56,5 +55,13 @@ $(document).ready(function () {
       $(jokeResponse).attr("color", "white");
       $("#joke").append(jokeResponse);
     });
+  });
+
+  //Counter API call
+  $.ajax({
+    url: "https://api.countapi.xyz/hit/jmh129.github.io/BruHub/visits",
+    method: "get",
+  }).then(function (response) {
+    $("#visits").text(response.value+" people like to party.");
   });
 });
