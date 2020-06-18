@@ -21,7 +21,9 @@ $(document).ready(function () {
       url: OpenBrewAPIURL,
       method: "GET",
     }).then(function (response) {
-      console.log(response);
+        for (var i = 0; i < response.length; i++) {
+            console.log(response[i].name);
+        }
     //   Need to create function that converts citys with spaces to have _ 
     });
   }
