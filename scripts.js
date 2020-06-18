@@ -9,6 +9,7 @@ $(document).ready(function () {
     $("#search-btn").on("click", function (event) {
       event.preventDefault();
       cityInput = $("#search-text").val();
+      cityInput = cityInput.split(" ").join("_");
       runOpenBrewAPI();
     });
   }
