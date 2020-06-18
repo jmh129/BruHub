@@ -56,3 +56,13 @@ input {
     border-radius: 5px;
     margin-left: 1px;
 }
+
+ul {
+list-style-type: none;
+}
+
+span {
+    background-color: #ffa500;
+    color: black;
+    border-radius: 5px;
+}
