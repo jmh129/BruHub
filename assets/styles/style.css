@@ -22,6 +22,10 @@ input {
     background-color: lightgray;
 }
 
+.hide {
+    display: none;
+}
+
 #search-btn {
     border-radius: 5px;
     margin-left: 1px;
