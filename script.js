@@ -7,6 +7,8 @@ $(document).ready(function(){
     console.log(response);
     })
 
+    
+
     //On click function for #button1
     $("#button1").on("click",function(){
         $("body").css("background-color","white");
@@ -14,8 +16,16 @@ $(document).ready(function(){
     })
     //On click function for #button2
     $("#button2").on("click",function(){
-        $("body").css("background-color","black");
-        console.log("button2")
+        $.ajax({
+            url: "https://official-joke-api.appspot.com/random_joke",
+            method: "get"
+        }).then(function(response){
+            console.log(response);
+        var jokeResponse = document.createElement("div");
+        $(jokeResponse).html(response.setup+response.punchline);
+        $(jokeResponse).attr("color","white");
+        $("#joke").append(jokeResponse);
+        })
     })
 
 })

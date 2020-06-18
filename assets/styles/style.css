@@ -2,7 +2,22 @@ body{
     background-color: black;
 }
 
+#button1{
+    display: flex;
+    justify-content: center;
+}
+
+#button2{
+    display: flex;
+    justify-content: center;
+}
+
 .container{
+    display: flex;
+    justify-content: center;
+}
+
+.container3{
     display: flex;
     justify-content: center;
 }
@@ -13,14 +28,8 @@ footer{
     justify-content: center;
 }
 
-#button1{
-    display: flex;
-    justify-content: center;
-}
-
-#button2{
-    display: flex;
-    justify-content: center;
+#joke{
+    color:white;
 }
 
 h1{
