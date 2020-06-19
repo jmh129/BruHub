@@ -8,18 +8,16 @@ $(document).ready(function () {
   searchCity();
   renderJoke();
   renderMeme();
-  window.navigator.geolocation
-  .getCurrentPosition(console.log, console.log);
 
   function showResultsBox() {
     $("#search-results").attr("class", "container-1 row");
   }
 
-  function hideWelcome(){
+  function hideWelcome() {
     $("#welcome").attr("class", "hide");
   }
 
-  function hideResults(){
+  function hideResults() {
     $("#search-results").attr("class", "hide");
   }
 
@@ -47,7 +45,8 @@ $(document).ready(function () {
       var htmlStr = "";
       var randNum = Math.floor(Math.random() * response.length);
       breweryList = response[randNum].name;
-      breweryWebsites = response[randNum].website_url;
+      breweryWebsites = response[randNum].website_url.replace("http:","https:");
+      console.log(breweryWebsites);
       breweryStreetAddress = response[randNum].street;
       breweryState = response[randNum].state;
       breweryZip = response[randNum].postal_code;
@@ -71,14 +70,15 @@ $(document).ready(function () {
          </div>
         </div>`;
       searchResults.html(htmlStr);
+      console.log(website);
     });
   }
   // RENDER JOKE FUNCTION
   function renderJoke() {
     $("#button2").on("click", function () {
       $("#search-results").empty();
-        hideResults();
-        $.ajax({
+      hideResults();
+      $.ajax({
         url: "https://official-joke-api.appspot.com/random_joke",
         method: "get",
       }).then(function (response) {
