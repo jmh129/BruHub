@@ -30,6 +30,9 @@ iframe {
     display: flex;
     justify-content: center;
     text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 header {
@@ -47,7 +50,8 @@ input {
 }
 
 .container-1 {
-    margin: 20px;
+    margin: auto;
+    margin-top:20px;
     max-width: 500px;
     color: white;
     border-style: solid;
@@ -56,6 +60,7 @@ input {
     border-radius: 5px;
     padding: 10px;
     background-color: #2775b3;
+
 }
 
 .hide {
@@ -69,7 +74,8 @@ input {
 
 ul {
 list-style-type: none;
-margin: 20px;
+margin: auto;
+margin-top:20px;
 max-width: 500px;
 color: white;
 border-style: solid;

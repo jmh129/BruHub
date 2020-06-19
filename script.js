@@ -31,7 +31,6 @@ $(document).ready(function () {
       cityInput = cityInput.split(" ").join("_");
       runOpenBrewAPI();
     });
-
   }
 
   function runOpenBrewAPI() {
@@ -78,6 +77,7 @@ $(document).ready(function () {
     $("#button2").on("click", function () {
       $("#search-results").empty();
         hideResults();
+        hideWelcome();
         $.ajax({
         url: "https://official-joke-api.appspot.com/random_joke",
         method: "get",
@@ -97,6 +97,7 @@ $(document).ready(function () {
     $("#button1").on("click", function () {
       $("#search-results").empty();
       hideResults();
+      hideWelcome();
       $.ajax({
         url: "https://meme-api.herokuapp.com/gimme",
         method: "get",
