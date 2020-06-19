@@ -9,9 +9,23 @@ $(document).ready(function () {
   renderJoke();
   renderMeme();
 
+  function showResultsBox() {
+    $("#search-results").attr("class", "container-1 row");
+  }
+
+  function hideWelcome(){
+    $("#welcome").attr("class", "hide");
+  }
+
+  function hideResults(){
+    $("#search-results").attr("class", "hide");
+  }
+
   function searchCity() {
     $("#search-btn").on("click", function (event) {
       event.preventDefault();
+      showResultsBox();
+      hideWelcome();
       $("#joke").empty();
       cityInput = $("#search-text").val();
       cityInput = cityInput.split(" ").join("_");
@@ -66,7 +80,8 @@ $(document).ready(function () {
   function renderJoke() {
     $("#button2").on("click", function () {
       $("#search-results").empty();
-      $.ajax({
+        hideResults();
+        $.ajax({
         url: "https://official-joke-api.appspot.com/random_joke",
         method: "get",
       }).then(function (response) {
@@ -84,6 +99,7 @@ $(document).ready(function () {
   function renderMeme() {
     $("#button1").on("click", function () {
       $("#search-results").empty();
+      hideResults();
       $.ajax({
         url: "https://meme-api.herokuapp.com/gimme",
         method: "get",
