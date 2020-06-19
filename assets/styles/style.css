@@ -43,6 +43,16 @@ iframe {
     max-height: 447px;
 }
 
+#joke2{
+    color:white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 10px;
+    max-height: fit-content;
+}
+
 header {
     background-color: #1d5786;
     color: white;
