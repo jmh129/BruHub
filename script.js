@@ -31,7 +31,6 @@ $(document).ready(function () {
       cityInput = cityInput.split(" ").join("_");
       runOpenBrewAPI();
     });
-
   }
 
   function runOpenBrewAPI() {
@@ -44,10 +43,7 @@ $(document).ready(function () {
       $("#search-results").empty();
       var searchResults = $("#search-results");
       var htmlStr = "";
-      console.log(response);
       var randNum = Math.floor(Math.random() * response.length);
-      console.log(response);
-      console.log(randNum);
       breweryList = response[randNum].name;
       breweryWebsites = response[randNum].website_url;
       breweryStreetAddress = response[randNum].street;
@@ -61,8 +57,8 @@ $(document).ready(function () {
           <div class="card col" style="width: 18rem;">
           <div class="card-body ">
           <h5 class="card-title">${breweryList}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">${breweryStreetAddress}
-          ${breweryState} ${breweryZip}
+          <h6 class="card-subtitle mb-2 text-muted">${breweryStreetAddress} <br>
+          ${breweryState}, ${breweryZip} <br>
           Phone: ${breweryPhone}
           </h6>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
