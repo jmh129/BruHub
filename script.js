@@ -2,6 +2,8 @@ $(document).ready(function () {
   var cityInput;
   var breweryList;
   var breweryWebsites;
+  var breweryStreetAddress;
+  var breweryState;
 
   searchCity();
   renderJoke();
@@ -20,24 +22,48 @@ $(document).ready(function () {
   function runOpenBrewAPI() {
     var OpenBrewAPIURL =
       "https://api.openbrewerydb.org/breweries?by_city=" + cityInput;
-
     $.ajax({
       url: OpenBrewAPIURL,
       method: "GET",
     }).then(function (response) {
-      for (var i = 0; i < response.length; i++) {
-        console.log(response);
-        breweryList = response[i].name;
-        breweryWebsites = response[i].website_url;
-        $("#search-results").removeClass("hide");
-        $("#search-results").append(
-          $("<li>" + breweryList + " - Check These Losers Out: " + breweryWebsites + "</li>")
-        );
-      }
+      $("#search-results").empty();
+      var searchResults = $("#search-results");
+      var htmlStr = "";
+      console.log(response);
+      // var result = response;
+      var randNum = Math.floor(Math.random() * response.length);
+      console.log(response);
+      console.log(randNum);
+      // for (var i = 0; i < response.length; i++) {
+      breweryList = response[randNum].name;
+      breweryWebsites = response[randNum].website_url;
+      breweryStreetAddress = response[randNum].street;
+      breweryState = response[randNum].state;
+      breweryZip = response[randNum].postal_code;
+      breweryPhone = response[randNum].phone;
+      var website = breweryWebsites
+        ? `<a href="${breweryWebsites}" target="_blank" class="card-link">Go to Their Website</a>`
+        : `<p> Sorry Couldn't find their website.</p>`;
+      htmlStr += `
+          <div class="card col-md-6" style="width: 18rem;">
+          <div class="card-body">
+          <h5 class="card-title">${breweryList}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">${breweryStreetAddress}
+          ${breweryState} ${breweryZip}
+          Phone: ${breweryPhone}
+          </h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          ${website}
+          <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="${breweryWebsites}" allowfullscreen></iframe>
+        </div>
+         </div>
+        </div>`;
+      searchResults.html(htmlStr);
     });
   }
 
-  //On click function for #button2 NEED TO REWORK/CLEANUP
+  // RENDER JOKE FUNCTION
   function renderJoke() {
     $("#button2").on("click", function () {
       $.ajax({
@@ -54,7 +80,7 @@ $(document).ready(function () {
       });
     });
   }
-  // On click function for #button2
+  //  RENDER MEME FUNCTION
   function renderMeme() {
     $("#button1").on("click", function () {
       $.ajax({
@@ -70,7 +96,7 @@ $(document).ready(function () {
     });
   }
 
-  //Counter API call
+  // Counter API call
   // function pageCounter() {
   //   $.ajax({
   //     url:
