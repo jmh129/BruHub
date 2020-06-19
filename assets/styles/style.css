@@ -66,3 +66,6 @@ span {
     color: black;
     border-radius: 5px;
 }
+.iframe {
+    background:url(../images/loader.gif) center center no-repeat;
+}
