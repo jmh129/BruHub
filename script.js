@@ -1,10 +1,13 @@
 $(document).ready(function () {
-  console.log("Document is Ready");
-
   var cityInput;
   var breweryList;
+  var breweryWebsites;
+  var breweryStreetAddress;
+  var breweryState;
 
   searchCity();
+  renderJoke();
+  renderMeme();
 
   function searchCity() {
     $("#search-btn").on("click", function (event) {
@@ -18,43 +21,75 @@ $(document).ready(function () {
   function runOpenBrewAPI() {
     var OpenBrewAPIURL =
       "https://api.openbrewerydb.org/breweries?by_city=" + cityInput;
-
     $.ajax({
       url: OpenBrewAPIURL,
       method: "GET",
     }).then(function (response) {
-      for (var i = 0; i < response.length; i++) {
-        console.log(response);
-        breweryList = response[i].name;
-      }
+      $("#search-results").empty();
+      var searchResults = $("#search-results");
+      var htmlStr = "";
+      console.log(response);
+      var randNum = Math.floor(Math.random() * response.length);
+      console.log(response);
+      console.log(randNum);
+      breweryList = response[randNum].name;
+      breweryWebsites = response[randNum].website_url;
+      breweryStreetAddress = response[randNum].street;
+      breweryState = response[randNum].state;
+      breweryZip = response[randNum].postal_code;
+      breweryPhone = response[randNum].phone;
+      var website = breweryWebsites
+        ? `<a href="${breweryWebsites}" target="_blank" class="card-link">Go to Their Website</a>`
+        : `<p> Sorry Couldn't find their website.</p>`;
+      htmlStr += `
+          <div class="card col-md-6" style="width: 18rem;">
+          <div class="card-body">
+          <h5 class="card-title">${breweryList}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">${breweryStreetAddress}
+          ${breweryState} ${breweryZip}
+          Phone: ${breweryPhone}
+          </h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          ${website}
+          <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="${breweryWebsites}" allowfullscreen></iframe>
+        </div>
+         </div>
+        </div>`;
+      searchResults.html(htmlStr);
     });
   }
 
-  //On click function for #button2
-  $("#button1").on("click", function () {
-    $.ajax({
-      url: "https://meme-api.herokuapp.com/gimme",
-      method: "get",
-    }).then(function (response) {
-      $("#joke").empty();
-      var memeResponse = document.createElement("img");
-      $(memeResponse).attr("src",response.url);
-      $(memeResponse).attr("color", "white");
-      $("#joke").append(memeResponse);
+  // RENDER JOKE FUNCTION
+  function renderJoke() {
+    $("#button2").on("click", function () {
+      $.ajax({
+        url: "https://official-joke-api.appspot.com/random_joke",
+        method: "get",
+      }).then(function (response) {
+        $("#joke").empty();
+        var jokeResponse = document.createElement("div");
+        $(jokeResponse).html(
+          response.setup + "<br><br><br><br>" + response.punchline
+        );
+        $(jokeResponse).attr("color", "white");
+        $("#joke").append(jokeResponse);
+      });
     });
-  });
-
-  //On click function for #button2
-  $("#button2").on("click", function () {
-    $.ajax({
-      url: "https://official-joke-api.appspot.com/random_joke",
-      method: "get",
-    }).then(function (response) {
-      $("#joke").empty();
-      var jokeResponse = document.createElement("div");
-      $(jokeResponse).html(response.setup + "<br><br><br><br>" + response.punchline);
-      $(jokeResponse).attr("color", "white");
-      $("#joke").append(jokeResponse);
+  }
+  //  RENDER MEME FUNCTION
+  function renderMeme() {
+    $("#button1").on("click", function () {
+      $.ajax({
+        url: "https://meme-api.herokuapp.com/gimme",
+        method: "get",
+      }).then(function (response) {
+        $("#joke").empty();
+        var memeResponse = document.createElement("img");
+        $(memeResponse).attr("src", response.url);
+        $(memeResponse).attr("color", "white");
+        $("#joke").append(memeResponse);
+      });
     });
-  });
+  }
 });
