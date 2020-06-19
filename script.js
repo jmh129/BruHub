@@ -62,7 +62,6 @@ $(document).ready(function () {
           ${breweryState}, ${breweryZip} <br>
           Phone: ${breweryPhone}
           </h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           ${website}
           <div class="embed-responsive embed-responsive-16by9">
           <iframe class="embed-responsive-item" src="${breweryWebsites}" allowfullscreen></iframe>
