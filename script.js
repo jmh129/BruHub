@@ -12,10 +12,12 @@ $(document).ready(function () {
   function searchCity() {
     $("#search-btn").on("click", function (event) {
       event.preventDefault();
+      $("#joke").empty();
       cityInput = $("#search-text").val();
       cityInput = cityInput.split(" ").join("_");
       runOpenBrewAPI();
     });
+
   }
 
   function runOpenBrewAPI() {
@@ -39,8 +41,8 @@ $(document).ready(function () {
         ? `<a href="${breweryWebsites}" target="_blank" class="card-link">Go to Their Website</a>`
         : `<p> Sorry Couldn't find their website.</p>`;
       htmlStr += `
-          <div class="card col-md-6" style="width: 18rem;">
-          <div class="card-body">
+          <div class="card col" style="width: 18rem;">
+          <div class="card-body ">
           <h5 class="card-title">${breweryList}</h5>
           <h6 class="card-subtitle mb-2 text-muted">${breweryStreetAddress} <br>
           ${breweryState}, ${breweryZip} <br>
@@ -60,6 +62,7 @@ $(document).ready(function () {
   // RENDER JOKE FUNCTION
   function renderJoke() {
     $("#button2").on("click", function () {
+      $("#search-results").empty();
       $.ajax({
         url: "https://official-joke-api.appspot.com/random_joke",
         method: "get",
@@ -77,6 +80,7 @@ $(document).ready(function () {
   //  RENDER MEME FUNCTION
   function renderMeme() {
     $("#button1").on("click", function () {
+      $("#search-results").empty();
       $.ajax({
         url: "https://meme-api.herokuapp.com/gimme",
         method: "get",
@@ -85,6 +89,7 @@ $(document).ready(function () {
         var memeResponse = document.createElement("img");
         $(memeResponse).attr("src", response.url);
         $(memeResponse).attr("color", "white");
+        $(memeResponse).attr("class", "meme-image")
         $("#joke").append(memeResponse);
       });
     });
