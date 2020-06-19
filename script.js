@@ -8,7 +8,6 @@ $(document).ready(function () {
   searchCity();
   renderJoke();
   renderMeme();
-  // pageCounter();
 
   function searchCity() {
     $("#search-btn").on("click", function (event) {
@@ -30,11 +29,9 @@ $(document).ready(function () {
       var searchResults = $("#search-results");
       var htmlStr = "";
       console.log(response);
-      // var result = response;
       var randNum = Math.floor(Math.random() * response.length);
       console.log(response);
       console.log(randNum);
-      // for (var i = 0; i < response.length; i++) {
       breweryList = response[randNum].name;
       breweryWebsites = response[randNum].website_url;
       breweryStreetAddress = response[randNum].street;
@@ -95,15 +92,4 @@ $(document).ready(function () {
       });
     });
   }
-
-  // Counter API call
-  // function pageCounter() {
-  //   $.ajax({
-  //     url:
-  //       "https://api.countapi.xyz/hit/jmh129.github.io/BruHub/visits",
-  //     method: "get",
-  //   }).then(function (response) {
-  //     $("#visits").text(response.value + " people like to party.");
-  //   });
-  // }
 });
