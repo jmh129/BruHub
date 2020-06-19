@@ -82,13 +82,14 @@ $(document).ready(function () {
         url: "https://official-joke-api.appspot.com/random_joke",
         method: "get",
       }).then(function (response) {
-        $("#joke").empty();
+        $("#joke2").empty();
+        $("#joke").attr("src","");
         var jokeResponse = document.createElement("div");
         $(jokeResponse).html(
           response.setup + "<br><br><br><br>" + response.punchline
         );
         $(jokeResponse).attr("color", "white");
-        $("#joke").append(jokeResponse);
+        $("#joke2").append(jokeResponse);
       });
     });
   }
@@ -103,7 +104,7 @@ $(document).ready(function () {
         method: "get",
       }).then(function (response) {
         console.log(response);
-        $("#joke").empty();
+        $("#joke2").empty();
         var memeResponse = $("#joke");
         $(memeResponse).attr("src", response.url);
         $(memeResponse).attr("color", "white");
