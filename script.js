@@ -13,11 +13,11 @@ $(document).ready(function () {
     $("#search-results").attr("class", "container-1 row");
   }
 
-  function hideWelcome(){
+  function hideWelcome() {
     $("#welcome").attr("class", "hide");
   }
 
-  function hideResults(){
+  function hideResults() {
     $("#search-results").attr("class", "hide");
   }
 
@@ -45,7 +45,8 @@ $(document).ready(function () {
       var htmlStr = "";
       var randNum = Math.floor(Math.random() * response.length);
       breweryList = response[randNum].name;
-      breweryWebsites = response[randNum].website_url;
+      breweryWebsites = response[randNum].website_url.replace("http:","https:");
+      console.log(breweryWebsites);
       breweryStreetAddress = response[randNum].street;
       breweryState = response[randNum].state;
       breweryZip = response[randNum].postal_code;
@@ -69,9 +70,9 @@ $(document).ready(function () {
          </div>
         </div>`;
       searchResults.html(htmlStr);
+      console.log(website);
     });
   }
-
   // RENDER JOKE FUNCTION
   function renderJoke() {
     $("#button2").on("click", function () {
@@ -106,7 +107,7 @@ $(document).ready(function () {
         var memeResponse = document.createElement("img");
         $(memeResponse).attr("src", response.url);
         $(memeResponse).attr("color", "white");
-        $(memeResponse).attr("class", "meme-image")
+        $(memeResponse).attr("class", "meme-image");
         $("#joke").append(memeResponse);
       });
     });
