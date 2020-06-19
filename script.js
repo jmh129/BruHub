@@ -13,11 +13,11 @@ $(document).ready(function () {
     $("#search-results").attr("class", "container-1 row");
   }
 
-  function hideWelcome() {
+  function hideWelcome(){
     $("#welcome").attr("class", "hide");
   }
 
-  function hideResults() {
+  function hideResults(){
     $("#search-results").attr("class", "hide");
   }
 
@@ -26,7 +26,7 @@ $(document).ready(function () {
       event.preventDefault();
       showResultsBox();
       hideWelcome();
-      $("#joke").empty();
+      $("#joke").attr("src","");
       cityInput = $("#search-text").val();
       cityInput = cityInput.split(" ").join("_");
       runOpenBrewAPI();
@@ -45,8 +45,7 @@ $(document).ready(function () {
       var htmlStr = "";
       var randNum = Math.floor(Math.random() * response.length);
       breweryList = response[randNum].name;
-      breweryWebsites = response[randNum].website_url.replace("http:","https:");
-      console.log(breweryWebsites);
+      breweryWebsites = response[randNum].website_url;
       breweryStreetAddress = response[randNum].street;
       breweryState = response[randNum].state;
       breweryZip = response[randNum].postal_code;
@@ -62,6 +61,7 @@ $(document).ready(function () {
           ${breweryState}, ${breweryZip} <br>
           Phone: ${breweryPhone}
           </h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
           ${website}
           <div class="embed-responsive embed-responsive-16by9">
           <iframe class="embed-responsive-item" src="${breweryWebsites}" allowfullscreen></iframe>
@@ -69,9 +69,9 @@ $(document).ready(function () {
          </div>
         </div>`;
       searchResults.html(htmlStr);
-      console.log(website);
     });
   }
+
   // RENDER JOKE FUNCTION
   function renderJoke() {
     $("#button2").on("click", function () {
@@ -102,11 +102,12 @@ $(document).ready(function () {
         url: "https://meme-api.herokuapp.com/gimme",
         method: "get",
       }).then(function (response) {
+        console.log(response);
         $("#joke").empty();
-        var memeResponse = document.createElement("img");
+        var memeResponse = $("#joke");
         $(memeResponse).attr("src", response.url);
         $(memeResponse).attr("color", "white");
-        $(memeResponse).attr("class", "meme-image");
+        $(memeResponse).addClass("class", "meme-image");
         $("#joke").append(memeResponse);
       });
     });
