@@ -27,6 +27,7 @@ $(document).ready(function () {
       showResultsBox();
       hideWelcome();
       $("#joke").attr("src","");
+      $("#joke2").html("");
       cityInput = $("#search-text").val();
       cityInput = cityInput.split(" ").join("_");
       runOpenBrewAPI();
