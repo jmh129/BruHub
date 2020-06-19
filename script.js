@@ -8,6 +8,8 @@ $(document).ready(function () {
   searchCity();
   renderJoke();
   renderMeme();
+  window.navigator.geolocation
+  .getCurrentPosition(console.log, console.log);
 
   function searchCity() {
     $("#search-btn").on("click", function (event) {
@@ -17,7 +19,6 @@ $(document).ready(function () {
       cityInput = cityInput.split(" ").join("_");
       runOpenBrewAPI();
     });
-
   }
 
   function runOpenBrewAPI() {
@@ -58,7 +59,6 @@ $(document).ready(function () {
       searchResults.html(htmlStr);
     });
   }
-
   // RENDER JOKE FUNCTION
   function renderJoke() {
     $("#button2").on("click", function () {
@@ -89,7 +89,7 @@ $(document).ready(function () {
         var memeResponse = document.createElement("img");
         $(memeResponse).attr("src", response.url);
         $(memeResponse).attr("color", "white");
-        $(memeResponse).attr("class", "meme-image")
+        $(memeResponse).attr("class", "meme-image");
         $("#joke").append(memeResponse);
       });
     });
