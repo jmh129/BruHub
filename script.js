@@ -9,9 +9,24 @@ $(document).ready(function () {
   renderJoke();
   renderMeme();
 
+  function showResultsBox() {
+    $("#search-results").attr("class", "container-1 row");
+  }
+
+  function hideWelcome(){
+    $("#welcome").attr("class", "hide");
+  }
+
+  function hideResults(){
+    $("#search-results").attr("class", "hide");
+  }
+
   function searchCity() {
     $("#search-btn").on("click", function (event) {
       event.preventDefault();
+      showResultsBox();
+      hideWelcome();
+      $("#joke").empty();
       cityInput = $("#search-text").val();
       cityInput = cityInput.split(" ").join("_");
       runOpenBrewAPI();
@@ -28,10 +43,7 @@ $(document).ready(function () {
       $("#search-results").empty();
       var searchResults = $("#search-results");
       var htmlStr = "";
-      console.log(response);
       var randNum = Math.floor(Math.random() * response.length);
-      console.log(response);
-      console.log(randNum);
       breweryList = response[randNum].name;
       breweryWebsites = response[randNum].website_url;
       breweryStreetAddress = response[randNum].street;
@@ -42,11 +54,11 @@ $(document).ready(function () {
         ? `<a href="${breweryWebsites}" target="_blank" class="card-link">Go to Their Website</a>`
         : `<p> Sorry Couldn't find their website.</p>`;
       htmlStr += `
-          <div class="card col-md-6" style="width: 18rem;">
-          <div class="card-body">
+          <div class="card col" style="width: 18rem;">
+          <div class="card-body ">
           <h5 class="card-title">${breweryList}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">${breweryStreetAddress}
-          ${breweryState} ${breweryZip}
+          <h6 class="card-subtitle mb-2 text-muted">${breweryStreetAddress} <br>
+          ${breweryState}, ${breweryZip} <br>
           Phone: ${breweryPhone}
           </h6>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -63,7 +75,10 @@ $(document).ready(function () {
   // RENDER JOKE FUNCTION
   function renderJoke() {
     $("#button2").on("click", function () {
-      $.ajax({
+      $("#search-results").empty();
+        hideResults();
+        hideWelcome();
+        $.ajax({
         url: "https://official-joke-api.appspot.com/random_joke",
         method: "get",
       }).then(function (response) {
@@ -80,6 +95,9 @@ $(document).ready(function () {
   //  RENDER MEME FUNCTION
   function renderMeme() {
     $("#button1").on("click", function () {
+      $("#search-results").empty();
+      hideResults();
+      hideWelcome();
       $.ajax({
         url: "https://meme-api.herokuapp.com/gimme",
         method: "get",
@@ -88,6 +106,7 @@ $(document).ready(function () {
         var memeResponse = document.createElement("img");
         $(memeResponse).attr("src", response.url);
         $(memeResponse).attr("color", "white");
+        $(memeResponse).attr("class", "meme-image")
         $("#joke").append(memeResponse);
       });
     });
