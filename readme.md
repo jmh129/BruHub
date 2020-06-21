@@ -19,13 +19,13 @@ Link to website: https://jmh129.github.io/BruHub/
 
 ### Website Pages
 #### Home Page
-![Alt Text](https://github.com/jmh129/gt-responsive-portfolio/blob/master/Assets/images/about-me.png?raw=true)
+![Alt Text](https://github.com/jmh129/BruHub/blob/JH-Branch/assets/img/brewerypage.png?raw=true)
 
 #### Meme Page
-![Alt Text](https://github.com/jmh129/gt-responsive-portfolio/blob/master/Assets/images/portfolio.png?raw=true)
+![Alt Text](https://github.com/jmh129/BruHub/blob/JH-Branch/assets/img/memepage.png?raw=true)
 
 #### Jokes Page
-![Alt Text](https://github.com/jmh129/gt-responsive-portfolio/blob/master/Assets/images/contact.png?raw=true)
+![Alt Text](https://github.com/jmh129/BruHub/blob/JH-Branch/assets/img/jokepage.png?raw=true)
 
 
 ### Credits
