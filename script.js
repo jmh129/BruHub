@@ -46,6 +46,7 @@ $(document).ready(function () {
       var htmlStr = "";
       var randNum = Math.floor(Math.random() * response.length);
       breweryList = response[randNum].name;
+      breweryWebsites = response[randNum].website_url.replace("http:","https:");
       breweryWebsites = response[randNum].website_url;
       breweryStreetAddress = response[randNum].street;
       breweryState = response[randNum].state;
