@@ -1,7 +1,7 @@
 # BruHub 
 ![Alt Text](https://github.com/jmh129/BruHub/blob/master/assets/img/bruhublogo.png?raw=true )
 ## Introduction
-This application was created as a project for the Georgia Tech Coding Full-Stack program. The goal of this project was to come up and an idea and develop it in a team setting. utilzing three server-side API's BruHub allows the user to enter in a location and is then presented with randomized breweries in that area via the OpenBreweryDB API. The user can also view randomized Jokes and Memes via the Official Joke API and Meme API. This app is intended to provide local establishments per location input as well as, entertainment from the jokes and memes. 
+This application was created as a project for the Georgia Tech Coding Full-Stack program. The goal of this project was to come up and an idea and develop it in a team setting. utilzing three server-side API's BruHub allows the user to enter in a location of their choosing and is then presented with randomized breweries in that area via the OpenBreweryDB API. The user can also view randomized Jokes and Memes via the Official Joke API and Meme API. This app is intended to provide local establishments per location input as well as, entertainment from the jokes and memes. 
 
 ## Table of Contents
 - Installation
