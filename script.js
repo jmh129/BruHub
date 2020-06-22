@@ -21,7 +21,6 @@ $(document).ready(function () {
     $("#search-results").attr("class", "hide");
   }
 
-<<<<<<< HEAD
   function searchCity(event) {
     event.preventDefault();
     showResultsBox();
@@ -30,19 +29,6 @@ $(document).ready(function () {
     var cityInput = $("#search-text").val();
     cityInput = cityInput.split(" ").join("_");
     runOpenBrewAPI(cityInput);
-=======
-  function searchCity() {
-    $("#search-btn").on("click", function (event) {
-      event.preventDefault();
-      showResultsBox();
-      hideWelcome();
-      $("#joke").attr("src","");
-      $("#joke2").html("");
-      cityInput = $("#search-text").val();
-      cityInput = cityInput.split(" ").join("_");
-      runOpenBrewAPI();
-    });
->>>>>>> 5329a367a9a97d580f3dfd63be60ac0e0ccf423e
   }
 
   // var city = cityInput
@@ -90,7 +76,6 @@ $(document).ready(function () {
 
   // RENDER JOKE FUNCTION
   function renderJoke() {
-<<<<<<< HEAD
     $("#search-results").empty();
     hideResults();
     hideWelcome();
@@ -105,31 +90,11 @@ $(document).ready(function () {
       );
       $(jokeResponse).attr("color", "white");
       $("#joke").append(jokeResponse);
-=======
-    $("#button2").on("click", function () {
-      $("#search-results").empty();
-        hideResults();
-        hideWelcome();
-        $.ajax({
-        url: "https://official-joke-api.appspot.com/random_joke",
-        method: "get",
-      }).then(function (response) {
-        $("#joke2").empty();
-        $("#joke").attr("src","");
-        var jokeResponse = document.createElement("div");
-        $(jokeResponse).html(
-          response.setup + "<br><br><br><br>" + response.punchline
-        );
-        $(jokeResponse).attr("color", "white");
-        $("#joke2").append(jokeResponse);
-      });
->>>>>>> 5329a367a9a97d580f3dfd63be60ac0e0ccf423e
     });
   }
 
   //  RENDER MEME FUNCTION
   function renderMeme() {
-<<<<<<< HEAD
     $("#search-results").empty();
     hideResults();
     hideWelcome();
@@ -143,24 +108,6 @@ $(document).ready(function () {
       $(memeResponse).attr("color", "white");
       $(memeResponse).attr("class", "meme-image");
       $("#joke").append(memeResponse);
-=======
-    $("#button1").on("click", function () {
-      $("#search-results").empty();
-      hideResults();
-      hideWelcome();
-      $.ajax({
-        url: "https://meme-api.herokuapp.com/gimme",
-        method: "get",
-      }).then(function (response) {
-        console.log(response);
-        $("#joke2").empty();
-        var memeResponse = $("#joke");
-        $(memeResponse).attr("src", response.url);
-        $(memeResponse).attr("color", "white");
-        $(memeResponse).addClass("class", "meme-image");
-        $("#joke").append(memeResponse);
-      });
->>>>>>> 5329a367a9a97d580f3dfd63be60ac0e0ccf423e
     });
   }
 });
