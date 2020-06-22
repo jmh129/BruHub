@@ -13,11 +13,11 @@ $(document).ready(function () {
     $("#search-results").attr("class", "container-1 row");
   }
 
-  function hideWelcome(){
+  function hideWelcome() {
     $("#welcome").attr("class", "hide");
   }
 
-  function hideResults(){
+  function hideResults() {
     $("#search-results").attr("class", "hide");
   }
 
@@ -31,6 +31,13 @@ $(document).ready(function () {
     runOpenBrewAPI(cityInput);
   }
 
+  function getRandomIndex(arr){
+
+
+    
+    return Math.floor(Math.random() * arr.length);
+  }
+
   // var city = cityInput
   function runOpenBrewAPI(city) {
     var OpenBrewAPIURL =
@@ -42,7 +49,7 @@ $(document).ready(function () {
       $("#search-results").empty();
       var searchResults = $("#search-results");
       var htmlStr = "";
-      var randNum = Math.floor(Math.random() * response.length);
+      var randNum = getRandomIndex(response)
       var breweryList = response[randNum].name;
       var breweryWebsites = response[randNum].website_url.replace(
         "http:",
@@ -84,11 +91,12 @@ $(document).ready(function () {
       method: "get",
     }).then(function (response) {
       $("#joke").empty();
-      var jokeResponse = document.createElement("div");
-      $(jokeResponse).html(
+      // var jokeResponse = document.createElement("div");
+      var jokeResponse = $("<div>");
+      jokeResponse.html(
         response.setup + "<br><br><br><br>" + response.punchline
       );
-      $(jokeResponse).attr("color", "white");
+      jokeResponse.attr("color", "white");
       $("#joke").append(jokeResponse);
     });
   }
@@ -103,11 +111,14 @@ $(document).ready(function () {
       method: "get",
     }).then(function (response) {
       $("#joke").empty();
-      var memeResponse = document.createElement("img");
-      $(memeResponse).attr("src", response.url);
-      $(memeResponse).attr("color", "white");
-      $(memeResponse).attr("class", "meme-image");
+
+      var memeResponse = $("<img>");
+      memeResponse.attr("src", response.url);
+      memeResponse.attr("color", "white");
+      memeResponse.attr("class", "meme-image");
       $("#joke").append(memeResponse);
     });
   }
 });
+
+
