@@ -3,12 +3,7 @@ body {
 }
 
 #bruhubAnimatedLogo{
-    transform: scale(1.2);
-    display: flex;
-}
-
-.bruhubAnimatedLogo{
-    display: inline-block;
+    transform: scale(.7);
 }
 
 iframe {
