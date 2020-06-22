@@ -1,9 +1,4 @@
 $(document).ready(function () {
-  // var cityInput;
-  // var breweryList;
-  // var breweryWebsites;
-  // var breweryStreetAddress;
-  // var breweryState;
 
   $("#search-btn").on("click", searchCity);
   $("#button2").on("click", renderJoke);
@@ -34,11 +29,10 @@ $(document).ready(function () {
   function getRandomIndex(arr){
 
 
-    
+
     return Math.floor(Math.random() * arr.length);
   }
 
-  // var city = cityInput
   function runOpenBrewAPI(city) {
     var OpenBrewAPIURL =
       "https://api.openbrewerydb.org/breweries?by_city=" + city;
@@ -91,6 +85,7 @@ $(document).ready(function () {
       method: "get",
     }).then(function (response) {
       $("#joke").empty();
+      
       // var jokeResponse = document.createElement("div");
       var jokeResponse = $("<div>");
       jokeResponse.html(
