@@ -5,9 +5,9 @@ $(document).ready(function () {
   var breweryStreetAddress;
   var breweryState;
 
-  searchCity();
-  renderJoke();
-  renderMeme();
+  $("#search-btn").on("click", searchCity);
+  $("#button2").on("click", renderJoke);
+  $("#button1").on("click", renderMeme);
 
   function showResultsBox() {
     $("#search-results").attr("class", "container-1 row");
@@ -21,16 +21,14 @@ $(document).ready(function () {
     $("#search-results").attr("class", "hide");
   }
 
-  function searchCity() {
-    $("#search-btn").on("click", function (event) {
-      event.preventDefault();
-      showResultsBox();
-      hideWelcome();
-      $("#joke").empty();
-      cityInput = $("#search-text").val();
-      cityInput = cityInput.split(" ").join("_");
-      runOpenBrewAPI();
-    });
+  function searchCity(event) {
+    event.preventDefault();
+    showResultsBox();
+    hideWelcome();
+    $("#joke").empty();
+    cityInput = $("#search-text").val();
+    cityInput = cityInput.split(" ").join("_");
+    runOpenBrewAPI();
   }
 
   function runOpenBrewAPI() {
@@ -45,7 +43,10 @@ $(document).ready(function () {
       var htmlStr = "";
       var randNum = Math.floor(Math.random() * response.length);
       breweryList = response[randNum].name;
-      breweryWebsites = response[randNum].website_url.replace("http:","https:");
+      breweryWebsites = response[randNum].website_url.replace(
+        "http:",
+        "https:"
+      );
       console.log(breweryWebsites);
       breweryStreetAddress = response[randNum].street;
       breweryState = response[randNum].state;
@@ -75,41 +76,38 @@ $(document).ready(function () {
   }
   // RENDER JOKE FUNCTION
   function renderJoke() {
-    $("#button2").on("click", function () {
-      $("#search-results").empty();
-        hideResults();
-        hideWelcome();
-        $.ajax({
-        url: "https://official-joke-api.appspot.com/random_joke",
-        method: "get",
-      }).then(function (response) {
-        $("#joke").empty();
-        var jokeResponse = document.createElement("div");
-        $(jokeResponse).html(
-          response.setup + "<br><br><br><br>" + response.punchline
-        );
-        $(jokeResponse).attr("color", "white");
-        $("#joke").append(jokeResponse);
-      });
+    $("#search-results").empty();
+    hideResults();
+    hideWelcome();
+    $.ajax({
+      url: "https://official-joke-api.appspot.com/random_joke",
+      method: "get",
+    }).then(function (response) {
+      $("#joke").empty();
+      var jokeResponse = document.createElement("div");
+      $(jokeResponse).html(
+        response.setup + "<br><br><br><br>" + response.punchline
+      );
+      $(jokeResponse).attr("color", "white");
+      $("#joke").append(jokeResponse);
     });
   }
+
   //  RENDER MEME FUNCTION
   function renderMeme() {
-    $("#button1").on("click", function () {
-      $("#search-results").empty();
-      hideResults();
-      hideWelcome();
-      $.ajax({
-        url: "https://meme-api.herokuapp.com/gimme",
-        method: "get",
-      }).then(function (response) {
-        $("#joke").empty();
-        var memeResponse = document.createElement("img");
-        $(memeResponse).attr("src", response.url);
-        $(memeResponse).attr("color", "white");
-        $(memeResponse).attr("class", "meme-image");
-        $("#joke").append(memeResponse);
-      });
+    $("#search-results").empty();
+    hideResults();
+    hideWelcome();
+    $.ajax({
+      url: "https://meme-api.herokuapp.com/gimme",
+      method: "get",
+    }).then(function (response) {
+      $("#joke").empty();
+      var memeResponse = document.createElement("img");
+      $(memeResponse).attr("src", response.url);
+      $(memeResponse).attr("color", "white");
+      $(memeResponse).attr("class", "meme-image");
+      $("#joke").append(memeResponse);
     });
   }
 });
