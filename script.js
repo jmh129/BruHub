@@ -1,9 +1,9 @@
 $(document).ready(function () {
-  var cityInput;
-  var breweryList;
-  var breweryWebsites;
-  var breweryStreetAddress;
-  var breweryState;
+  // var cityInput;
+  // var breweryList;
+  // var breweryWebsites;
+  // var breweryStreetAddress;
+  // var breweryState;
 
   $("#search-btn").on("click", searchCity);
   $("#button2").on("click", renderJoke);
@@ -26,14 +26,15 @@ $(document).ready(function () {
     showResultsBox();
     hideWelcome();
     $("#joke").empty();
-    cityInput = $("#search-text").val();
+    var cityInput = $("#search-text").val();
     cityInput = cityInput.split(" ").join("_");
-    runOpenBrewAPI();
+    runOpenBrewAPI(cityInput);
   }
 
-  function runOpenBrewAPI() {
+  // var city = cityInput
+  function runOpenBrewAPI(city) {
     var OpenBrewAPIURL =
-      "https://api.openbrewerydb.org/breweries?by_city=" + cityInput;
+      "https://api.openbrewerydb.org/breweries?by_city=" + city;
     $.ajax({
       url: OpenBrewAPIURL,
       method: "GET",
@@ -42,14 +43,14 @@ $(document).ready(function () {
       var searchResults = $("#search-results");
       var htmlStr = "";
       var randNum = Math.floor(Math.random() * response.length);
-      breweryList = response[randNum].name;
-      breweryWebsites = response[randNum].website_url.replace(
+      var breweryList = response[randNum].name;
+      var breweryWebsites = response[randNum].website_url.replace(
         "http:",
         "https:"
       );
       console.log(breweryWebsites);
-      breweryStreetAddress = response[randNum].street;
-      breweryState = response[randNum].state;
+      var breweryStreetAddress = response[randNum].street;
+      var breweryState = response[randNum].state;
       breweryZip = response[randNum].postal_code;
       breweryPhone = response[randNum].phone;
       var website = breweryWebsites
