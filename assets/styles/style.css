@@ -39,8 +39,9 @@ iframe {
     text-align: center;
     margin: auto;
     margin-bottom: 10px;
-    max-height: fit-content;
+    /* max-height: fit-content;
     max-height: 447px;
+    max-width: max-content */
 }
 
 #joke2{
@@ -122,7 +123,13 @@ span {
 }
 
 .meme-image {
-    width: 100%;
+    margin-top: 10px;
+    display: block;
+    width: auto;
+    height: auto;
+    max-height: fit-content;
+    max-height: 447px;
+    max-width: 100%;
 }
 
 .footer {
