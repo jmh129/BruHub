@@ -1,13 +1,13 @@
 $(document).ready(function () {
-  var cityInput;
-  var breweryList;
-  var breweryWebsites;
-  var breweryStreetAddress;
-  var breweryState;
+  // var cityInput;
+  // var breweryList;
+  // var breweryWebsites;
+  // var breweryStreetAddress;
+  // var breweryState;
 
-  searchCity();
-  renderJoke();
-  renderMeme();
+  $("#search-btn").on("click", searchCity);
+  $("#button2").on("click", renderJoke);
+  $("#button1").on("click", renderMeme);
 
   function showResultsBox() {
     $("#search-results").attr("class", "container-1 row");
@@ -21,22 +21,20 @@ $(document).ready(function () {
     $("#search-results").attr("class", "hide");
   }
 
-  function searchCity() {
-    $("#search-btn").on("click", function (event) {
-      event.preventDefault();
-      showResultsBox();
-      hideWelcome();
-      $("#joke").attr("src","");
-      $("#joke2").html("");
-      cityInput = $("#search-text").val();
-      cityInput = cityInput.split(" ").join("_");
-      runOpenBrewAPI();
-    });
+  function searchCity(event) {
+    event.preventDefault();
+    showResultsBox();
+    hideWelcome();
+    $("#joke").empty();
+    var cityInput = $("#search-text").val();
+    cityInput = cityInput.split(" ").join("_");
+    runOpenBrewAPI(cityInput);
   }
 
-  function runOpenBrewAPI() {
+  // var city = cityInput
+  function runOpenBrewAPI(city) {
     var OpenBrewAPIURL =
-      "https://api.openbrewerydb.org/breweries?by_city=" + cityInput;
+      "https://api.openbrewerydb.org/breweries?by_city=" + city;
     $.ajax({
       url: OpenBrewAPIURL,
       method: "GET",
@@ -45,11 +43,14 @@ $(document).ready(function () {
       var searchResults = $("#search-results");
       var htmlStr = "";
       var randNum = Math.floor(Math.random() * response.length);
-      breweryList = response[randNum].name;
-      breweryWebsites = response[randNum].website_url.replace("http:","https:");
+      var breweryList = response[randNum].name;
+      var breweryWebsites = response[randNum].website_url.replace(
+        "http:",
+        "https:"
+      );
       console.log(breweryWebsites);
-      breweryStreetAddress = response[randNum].street;
-      breweryState = response[randNum].state;
+      var breweryStreetAddress = response[randNum].street;
+      var breweryState = response[randNum].state;
       breweryZip = response[randNum].postal_code;
       breweryPhone = response[randNum].phone;
       var website = breweryWebsites
@@ -75,43 +76,38 @@ $(document).ready(function () {
 
   // RENDER JOKE FUNCTION
   function renderJoke() {
-    $("#button2").on("click", function () {
-      $("#search-results").empty();
-        hideResults();
-        hideWelcome();
-        $.ajax({
-        url: "https://official-joke-api.appspot.com/random_joke",
-        method: "get",
-      }).then(function (response) {
-        $("#joke2").empty();
-        $("#joke").attr("src","");
-        var jokeResponse = document.createElement("div");
-        $(jokeResponse).html(
-          response.setup + "<br><br><br><br>" + response.punchline
-        );
-        $(jokeResponse).attr("color", "white");
-        $("#joke2").append(jokeResponse);
-      });
+    $("#search-results").empty();
+    hideResults();
+    hideWelcome();
+    $.ajax({
+      url: "https://official-joke-api.appspot.com/random_joke",
+      method: "get",
+    }).then(function (response) {
+      $("#joke").empty();
+      var jokeResponse = document.createElement("div");
+      $(jokeResponse).html(
+        response.setup + "<br><br><br><br>" + response.punchline
+      );
+      $(jokeResponse).attr("color", "white");
+      $("#joke").append(jokeResponse);
     });
   }
+
   //  RENDER MEME FUNCTION
   function renderMeme() {
-    $("#button1").on("click", function () {
-      $("#search-results").empty();
-      hideResults();
-      hideWelcome();
-      $.ajax({
-        url: "https://meme-api.herokuapp.com/gimme",
-        method: "get",
-      }).then(function (response) {
-        console.log(response);
-        $("#joke2").empty();
-        var memeResponse = $("#joke");
-        $(memeResponse).attr("src", response.url);
-        $(memeResponse).attr("color", "white");
-        $(memeResponse).addClass("class", "meme-image");
-        $("#joke").append(memeResponse);
-      });
+    $("#search-results").empty();
+    hideResults();
+    hideWelcome();
+    $.ajax({
+      url: "https://meme-api.herokuapp.com/gimme",
+      method: "get",
+    }).then(function (response) {
+      $("#joke").empty();
+      var memeResponse = document.createElement("img");
+      $(memeResponse).attr("src", response.url);
+      $(memeResponse).attr("color", "white");
+      $(memeResponse).attr("class", "meme-image");
+      $("#joke").append(memeResponse);
     });
   }
 });
